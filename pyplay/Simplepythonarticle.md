@@ -1,4 +1,4 @@
-Hello everybody! I am **Siddharth**. This is a tutorial on how to use the print and input functions and the if, elif, and else statements, for loop, the while loop, and data structres!
+Hello everybody! I am **Siddharth**. This is a tutorial on how to use the print and input functions and the if, elif, and else statements, for loop, the while loop, and data structures!
 # The print() function
 you can put strings on the screen with the print funtion. Strings are like words or letters
 ## example:
@@ -101,7 +101,7 @@ while 1==1:
 #while 1==2:
 #that won't work because 1 is not = 2
 ```
-## data structres. Lists and dicttionaries!!!
+## data structures. Lists and dicttionaries!!!
 ## Lists
 The list is a way of storing data. To make a list, you make a variables value a list. you use [] to make a list
 ## example
