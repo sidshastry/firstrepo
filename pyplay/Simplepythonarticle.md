@@ -202,13 +202,5 @@ if the input is 45 or 356, it will print the value of it
       </summary>
       A key and a value
 </details>
-
-<details>
-      <summary>
-      How can you find the number of elements in a list?
-      </summary>
-      Using `len()` function. For ex: `len(l)`
-</details>
-
 Hope you enjoyed!!!
 Thank you for looking.
