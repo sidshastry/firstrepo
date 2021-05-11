@@ -101,7 +101,7 @@ while 1==1:
 #while 1==2:
 #that won't work because 1 is not = 2
 ```
-## data structures. Lists and dicttionaries!!!
+## data structures. Lists and dictionaries!!!
 ## Lists
 The list is a way of storing data. To make a list, you make a variables value a list. you use [] to make a list
 ## example
