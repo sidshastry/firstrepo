@@ -122,9 +122,6 @@ randomdict = {
     "45": "forty five",
     "356": "three fifty six"
 }
-inp = input("enter any of these numbers (45 or 356) to see the word form:  ")
-if inp in randomdict:
-    print(inp[randomdict])
 ```
 if the input is 45 or 356, it will print the value of it
 
