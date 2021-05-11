@@ -1,0 +1,11 @@
+[
+    {
+        "story": "Once upon a time there was a {i1} who liked to eat {i2}. He was going to {i3} one day to help {i4} neighbor and all of a sudden it started raining. Then, {i4} started shouting 'Hey {i5}!'. {i4} started shooting water with water guns at me and {i6}.", 
+        "inputs": ["i1", "i2", "i3", "i4", "i5", "i6"]
+    },
+    {
+        "story": "{i1} was a cute little girl. However, {i2} and {i3} who was supposed to be the friends of this cute little girly {i1} were pretty jealous of {i1}'s cuteness. So they thought, let us also become very cute. They thought if they drink the juice of {i4}, all of a sudden, they could become extremely cute and the world would give them {i5} as a prize! Then may be, they can jump around with {i6} and make {i1} very jealous of their cuteness! But their friend {i7} just enjoyed!", 
+        "inputs": ["i1", "i2", "i3", "i4", "i5", "i6", "i7"]
+    } 
+
+]

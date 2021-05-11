@@ -1,0 +1,40 @@
+
+<!-- saved from url=(0083)https://www.tynker.com/code/project/vfs/project/607e538b3c6c1c64567bcd17/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><form>
+<select id="listofisto">
+  <option>pancake</option>
+  <option>pizza</option>
+  <option>fruit</option>
+</select>
+<input type="button" onclick="javascript:disable();" value="Disable list">
+<input type="button" onclick="javscript:enable();" value="Enable list">
+<input type="button" onclick="javascript:compliment();" value="enter choice">
+<input type="button" onclick="javascript:print()" value="print page" <="" form="">
+<script>
+    function disable() {
+        document.getElementById("listofisto").disabled = true;
+        
+    }
+</script>
+<script>
+    function enable() {
+        document.getElementById("listofisto").disabled = false;
+        
+    }
+</script>
+<script>
+    function compliment() {
+        var x = document.getElementById("listofisto").value;
+        if (x =="fruit") {
+            alert("good job for choosing healthy. ");
+        }
+        else if(x =="pancake") {
+            alert('they are not my favorite.');
+        }
+        else {
+            alert('I like pizza too');
+        }
+        
+    }
+</script>
+</form></body></html>

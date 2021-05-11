@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&mode=# -->
+<html spellcheck="false"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+
+<title>Framed Bramble</title>
+<link rel="stylesheet" href="./font-awesome.min(1).css">
+<link rel="stylesheet" href="./hosted.css">
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="edit" src="./edit.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="bramble" src="./bramble.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="/ext/base64js.min.js" src="./base64js.min.js"></script></head>
+<body class="bramble-ide">
+<div class="bramble-ide__flash-banner"></div>
+<div id="editor" class="full" data-project-id="607e538b3c6c1c64567bcd17"><iframe id="bramble-3c24107f-a56f-48cf-b9e5-8c30d1d99696" frameborder="0" width="100%" height="100%" allow="geolocation *; microphone *; camera *" src="./index.html"></iframe></div>
+<div id="toolbar" class="toolbar">
+<div id="treeview" class="treeview" style="width: 200px;">
+<div class="nav-container">
+<label><strong>Files</strong></label>
+<a id="hide-sidebar" class="sidebar fa fa-chevron-left" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+</div>
+</div><div id="editorview" class="editorview" style="width: 802px;">
+<div class="nav-container">
+<div class="nav-container__left">
+<a id="show-sidebar" class="sidebar fa fa-chevron-right hidden" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+<label><strong>Editor</strong> <span>index.html</span></label>
+</div>
+<div class="nav-container__right">
+
+
+
+<bramble-ide-menu-save><div class="bramble-ide-menu-save">
+    <div id="bramble-ide-menu-save-container" class="bramble-ide-menu is-closed">
+        <ul>
+            <li id="editor-option-save-as" class="option-link">
+                <span>Save as...</span>
+            </li>
+            <li id="editor-option-auto-save">
+                <span>Auto save</span>
+                <div class="bramble-ide-menu-buttons switch-toggle" id="auto-save">
+                    <div class="toggle-backing"></div>
+                    <div class="toggle-button"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</bramble-ide-menu-save>
+<bramble-ide-menu-options><div class="bramble-ide-menu-options">
+    <a id="bramble-ide-menu-options" class="tool fa fa-cog" ng-click="vm.toggleMenu()" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+
+    <div id="bramble-ide-menu-options-container" class="bramble-ide-menu is-closed">
+        <ul>
+            <li id="editor-option-theme">
+                <span>Theme</span>
+                <div class="bramble-ide-menu-buttons">
+                    <a id="editor-theme-dark-button" class="bramble-ide-menu-button fa fa-moon-o is-active" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+                    <a id="editor-theme-light-button" class="bramble-ide-menu-button fa fa-sun-o" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+                </div>
+            </li>
+
+            <li>
+                <span>Font size</span>
+                <div class="bramble-ide-menu-buttons">
+                    <a id="editor-decrease-fontsize-button" class="bramble-ide-menu-button fa fa-minus" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+                    <a id="editor-increase-fontsize-button" class="bramble-ide-menu-button fa fa-plus" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+                </div>
+            </li>
+
+            <li id="editor-option-wrap-long-lines">
+                <span>Wrap long lines</span>
+                <div class="bramble-ide-menu-buttons switch-toggle switch-enabled" id="wrap-lines-toggle">
+                    <div class="toggle-backing"></div>
+                    <div class="toggle-button"></div>
+                </div>
+            </li>
+
+            <li id="editor-option-show-whitespace">
+                <span>Show whitespace</span>
+                <div class="bramble-ide-menu-buttons switch-toggle" id="show-whitespace-toggle">
+                    <div class="toggle-backing"></div>
+                    <div class="toggle-button"></div>
+                </div>
+            </li>
+
+            <li id="editor-option-edit-svg" ng-show="vm.currentFileType === &#39;svg&#39;" class="ng-hide">
+                <span>Edit SVG images as code</span>
+                <div class="bramble-ide-menu-buttons switch-toggle" id="edit-svg-toggle">
+                    <div class="toggle-backing"></div>
+                    <div class="toggle-button"></div>
+                </div>
+            </li>
+
+            <li id="editor-option-auto-close-tags" ng-show="vm.currentFileType === &#39;html&#39;" class="">
+                <span>Auto close tags</span>
+                <div class="bramble-ide-menu-buttons switch-toggle switch-enabled" id="auto-close-tags-toggle">
+                    <div class="toggle-backing"></div>
+                    <div class="toggle-button"></div>
+                </div>
+            </li>
+
+            <li id="editor-option-loop-protect" ng-show="vm.currentFileType === &#39;html&#39; || vm.currentFileType === &#39;js&#39;" class="">
+                <span>Loop Protection</span>
+                <div class="bramble-ide-menu-buttons switch-toggle switch-enabled" id="loop-protect-toggle">
+                    <div class="toggle-backing"></div>
+                    <div class="toggle-button"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</bramble-ide-menu-options>
+<bramble-ide-menu-snippets><div class="bramble-ide-menu-snippets">
+    <a id="bramble-ide-menu-snippets" class="tool fa fa-code" ng-click="vm.toggleMenu()" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+
+    <div class="bramble-ide-menu-snippets-container bramble-ide-menu is-closed">
+        <div class="bramble-ide-menu-snippets-content">
+            <header>
+                <h2 class="snippets-menu-title">Code Snippets</h2>
+                <div class="snippets-categories">
+                    <!----><span ng-repeat="category in vm.categories" data-type="html" ng-class="{active: category.type === vm.activeCategoryType}" ng-click="vm.selectCategory(category)" class="active">
+                            HTML
+                    </span><!----><span ng-repeat="category in vm.categories" data-type="css" ng-class="{active: category.type === vm.activeCategoryType}" ng-click="vm.selectCategory(category)">
+                            CSS
+                    </span><!----><span ng-repeat="category in vm.categories" data-type="js" ng-class="{active: category.type === vm.activeCategoryType}" ng-click="vm.selectCategory(category)">
+                            JS
+                    </span><!---->
+                </div>
+            </header>
+
+            <div class="snippets">
+                <ul class="snippets-list">
+                    <!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-print" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Print
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-comment" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Comment
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-multiline-comment" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Multi line comment
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-input" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Input
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-basic-function" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Basic Function
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-list" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            List
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-dictionary" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Dictionary
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-for-loop-with-numbers" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            For Loop with numbers
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-for-loop-with-lists" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            For Loop with lists
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-while-loop" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            While loop
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-if" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            If
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-if-else" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            If Else
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-If-elif-else" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            If Elif Else
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-turtle-example" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Turtle example
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-comment" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="selected">
+                            Comment
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-table" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="">
+                            Table
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-ordered-list" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="">
+                            Ordered List
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-unordered-list" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="">
+                            Unordered List
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-script" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="">
+                            Include a JavaScript file
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-external-stylesheet" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="">
+                            Include a CSS file
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-video" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="">
+                            Video Player
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-audio" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="">
+                            Audio Player
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-comment" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Comment
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-tag-name-selector" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Element Type Selector
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-class-selector" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Class Selector
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-id-selector" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            ID Selector
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-link-styling" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Link Styles
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-media-queries" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Media Queries
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-kfa" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Keyframe Animation
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-comment" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Comment
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-array" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Array
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-object" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Object
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-if-else" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            If Else Statement
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-switch" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Switch Statement
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-for-loop" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            For Loop
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-while-loop" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            While Loop
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-empty-function" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            A Basic Function
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-change-style" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Change CSS Property
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-click-handler" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Add a Click Event
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-microbit" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Micro:bit
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-display" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Display
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-buttons" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Buttons
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-temperature" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Temperature
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-accelerometer" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Accelerometer
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-compass" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Compass
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-radio" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Radio
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-music" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Music
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-io-pins" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            I/O Pins
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-scroll-text" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Scroll Text
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-show-text" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Show Text
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-show-number" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Show a Number
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-show-image" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Show an Image
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-clear-display" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Clear Display
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-check-if-button-is-currently-pressed" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Check if Button is currently pressed
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-check-if-button-was-pressed-before" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Check if Button was pressed before
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-pause-code" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Pause code
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-get-temperature" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Get Temperature
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-restart-the-microbit" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Restart the micro:bit
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-get-accelerometer-values" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Get Accelerometer Values
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-get-accelerometer-gesture" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Get Accelerometer Gesture
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-calibrate-compass" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Calibrate Compass
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-get-compass-heading-direction" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Get Compass Heading/Direction
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-import-the-radio-library" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Import the radio library
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-turn-on-radio" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Turn on Radio
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-send-message-with-radio" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Send Message with Radio
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-get-received-message-from-radio" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Get Received Message from Radio
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-get-full-received-message" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Get Full Received Message
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-import-the-music-library" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Import the music library
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-play-a-musical-note" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Play a Musical Note
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-play-a-certain-frequency" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Play a Certain Frequency
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-check-if-current-is-flowing-in-pin" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Check if current is flowing in pin
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-send-a-current-to-a-pin" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Send a current to a pin
+                    </li><!----><li ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-detect-if-a-pin-is-being-touched" ng-class="{selected: snippet.id === vm.activeSnippetId, &#39;is-hidden&#39;: snippet.type !== vm.activeCategoryType || snippet.groupId}" ng-click="vm.selectSnippet(snippet)" class="is-hidden">
+                            Detect if a pin is being touched
+                    </li><!---->
+                </ul>
+
+                <div class="snippets-preview-pane">
+                    <!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-print" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>print("Hello, World!")</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-comment" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre># This is a comment</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-multiline-comment" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>'''
+   Multi line comments
+   Add more lines here
+'''</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-input" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>age = input("How old are you? ")</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-basic-function" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>def display(name):
+  print("Hello, " + name)
+
+display("John")</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-list" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>colors = ["red", "blue", "green", "yellow"]</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-dictionary" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>student =  { "name" : "john", "grade" : 89 }
+print(student["name"])</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-for-loop-with-numbers" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre># This for loop prints from 0 to 9
+for i in range(10):
+    print(i)</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-for-loop-with-lists" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>colors = ["red", "blue", "green", "yellow"]
+for color in colors:
+    print(color)</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-while-loop" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>i = 1
+# This for loop prints from 1 to 10
+while i &lt;= 10:
+    print(i)
+    i += 1</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-if" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>if age &lt; 18 :
+    print("child")</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-if-else" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>if age &lt; 18:
+    print("child")
+else:
+    print("adult")</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-If-elif-else" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>answer = input("Enter a number: ")
+if answer &lt; 4:
+   print("too small")
+elif answer &gt; 10:
+    print("too big")
+else:
+    print("just right")</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="python" data-snippet-id="python-turtle-example" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>import turtle
+
+spiral = turtle.Turtle()
+spiral.pencolor("blue")
+
+for i in range(40):
+  spiral.forward(i * 10)
+  spiral.right(144)
+
+turtle.done()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-comment" class="snippets-preview" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>&lt;!-- This is a comment --&gt;</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-table" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;th&gt;Age&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;John&lt;/td&gt;
+    &lt;td&gt;12&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Mary&lt;/td&gt;
+    &lt;td&gt;14&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-ordered-list" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>&lt;ol&gt;
+    &lt;li&gt;First item&lt;/li&gt;
+    &lt;li&gt;Second item&lt;/li&gt;
+    &lt;li&gt;Third item&lt;/li&gt;
+&lt;/ol&gt;</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-unordered-list" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>&lt;ul&gt;
+    &lt;li&gt;Apples&lt;/li&gt;
+    &lt;li&gt;Oranges&lt;/li&gt;
+    &lt;li&gt;Bananas&lt;/li&gt;
+&lt;/ul&gt;</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-script" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>&lt;!-- Add this tag to your HTML file above the &lt;/body&gt; tag --&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-external-stylesheet" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>&lt;!-- Add this tag to your HTML file inside the &lt;head&gt; tag --&gt;
+&lt;link href="style.css" rel="stylesheet"&gt;</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-video" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>&lt;video width="320" height="240"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="html" data-snippet-id="html-audio" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>&lt;audio&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-comment" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>/* This is a comment */</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-tag-name-selector" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>p {
+    font-size: 40px;
+}</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-class-selector" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>.myClass {
+    background-color: cyan;
+}</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-id-selector" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>#myId {
+    background-color: purple;
+}</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-link-styling" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>/* Normal */
+a:link {
+    color: blue;
+    text-decoration: underline;
+}
+
+/* Visited */
+a:visited {
+    color: violet;
+    text-decoration: none;
+}
+
+/* Hovered */
+a:hover {
+    color: pink;
+}</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-media-queries" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>@media screen and (max-width: 360px) {
+    /* My styles for small screens (like smartphones) */
+}
+
+@media screen and (min-width: 361px) and (max-width: 1020px) {
+    /* My styles for medium screens (like tablets) */
+}
+
+@media screen and (min-width: 1021px) {
+    /* My styles for large screens (like desktops) */
+}</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="css" data-snippet-id="css-kfa" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>.animated {
+    animation-name: myAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes myAnimation {
+    0% { background-color: red; }
+    50% { background-color: orange; }
+    100% { background-color: yellow; }
+}</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-comment" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>// This is a comment</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-array" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>var colors = ["red", "blue", "green", "yellow"];</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-object" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>var student = {
+    name: "John",
+    grade: 89
+};</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-if-else" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>var name = "John";
+
+if (name === "John") {
+    console.log("Hello, " + name);
+} else if (name === "Mary") {
+    console.log("Welcome, " + name);
+} else {
+    console.log("Hello, stranger!");
+}</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-switch" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>var name = "John";
+
+switch(name) {
+    case "John":
+        console.log("Hello, " + name);
+        break;
+    case "Mary":
+        console.log("Welcome, " + name);
+        break;
+    default:
+        // Do something if no condition was met
+        console.log("Hello, stranger!");
+}</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-for-loop" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>var colors = ["red", "blue", "green", "yellow"];
+var color;
+
+for (var i = 0; i &lt; colors.length; i++) {
+    color = colors[i];
+    console.log(color);
+}</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-while-loop" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>var i = 1;
+
+while (i &lt;= 10) {
+    console.log(i);
+    i = i + 1;
+}</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-empty-function" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>function display(name) {
+    console.log("Hello, " + name);
+}
+
+display("John");</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-change-style" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>var myHeader = document.querySelector("#myHeader");
+myHeader.style.backgroundColor = "salmon";</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="js" data-snippet-id="js-click-handler" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre>var myButton = document.querySelector("#myButton");
+
+myButton.addEventListener("click", function() {
+    console.log("You clicked!");
+});</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-microbit" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre></pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-display" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre></pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-buttons" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre></pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-temperature" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre></pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-accelerometer" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre></pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-compass" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre></pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-radio" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre></pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-music" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre></pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-io-pins" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!---->
+                            <pre></pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-scroll-text" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Scroll Text</strong><!---->
+                            <pre>display.scroll("Hello, World!")</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-show-text" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Show Text</strong><!---->
+                            <pre>display.show("Hello, World!")</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-show-number" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Show a Number</strong><!---->
+                            <pre>display.show(9)</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-show-image" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Show an Image</strong><!---->
+                            <pre>display.show(Image("09090:09090:00000:90009:09990"))</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-clear-display" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Clear Display</strong><!---->
+                            <pre>display.clear()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-check-if-button-is-currently-pressed" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Check if Button is currently pressed</strong><!---->
+                            <pre>button_a.is_pressed()
+button_b.is_pressed()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-check-if-button-was-pressed-before" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Check if Button was pressed before</strong><!---->
+                            <pre>button_a.was_pressed()
+button_b.was_pressed()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-pause-code" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Pause code</strong><!---->
+                            <pre>sleep(100)</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-get-temperature" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Get Temperature</strong><!---->
+                            <pre>temperature()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-restart-the-microbit" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Restart the micro:bit</strong><!---->
+                            <pre>reset()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-get-accelerometer-values" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Get Accelerometer Values</strong><!---->
+                            <pre>accelerometer.get_x()
+accelerometer.get_y()
+accelerometer.get_z()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-get-accelerometer-gesture" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Get Accelerometer Gesture</strong><!---->
+                            <pre>accelerometer.current_gesture()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-calibrate-compass" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Calibrate Compass</strong><!---->
+                            <pre>compass.calibrate()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-get-compass-heading-direction" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Get Compass Heading/Direction</strong><!---->
+                            <pre>compass.heading()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-import-the-radio-library" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Import the radio library</strong><!---->
+                            <pre>import radio</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-turn-on-radio" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Turn on Radio</strong><!---->
+                            <pre>radio.on()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-send-message-with-radio" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Send Message with Radio</strong><!---->
+                            <pre>radio.send('Hello!')</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-get-received-message-from-radio" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Get Received Message from Radio</strong><!---->
+                            <pre>radio.receive()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-get-full-received-message" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Get Full Received Message</strong><!---->
+                            <pre>radio.receive_full()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-import-the-music-library" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Import the music library</strong><!---->
+                            <pre>import music</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-play-a-musical-note" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Play a Musical Note</strong><!---->
+                            <pre>music.play('d#4:2')</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-play-a-certain-frequency" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Play a Certain Frequency</strong><!---->
+                            <pre>music.pitch(422)</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-check-if-current-is-flowing-in-pin" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Check if current is flowing in pin</strong><!---->
+                            <pre>pin0.read_digital()
+pin1.read_digital()
+pin2.read_digital()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-send-a-current-to-a-pin" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Send a current to a pin</strong><!---->
+                            <pre>pin0.write_digital()
+pin1.write_digital()
+pin2.write_digital()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!----><div ng-repeat="snippet in vm.snippets" data-type="micropython" data-snippet-id="mpy-detect-if-a-pin-is-being-touched" class="snippets-preview is-hidden" ng-class="{&#39;is-hidden&#39;: !snippet.code || (snippet.id !== vm.activeSnippetId &amp;&amp; snippet.groupId !== vm.activeSnippetId)}">
+                            <!----><strong class="snippets-preview-pane-label" ng-if="snippet.groupId">Detect if a pin is being touched</strong><!---->
+                            <pre>pin0.is_touched()
+pin1.is_touched()
+pin2.is_touched()</pre>
+                            <button class="snippets-insert-button" ng-click="vm.insertSnippet(snippet)">Insert</button>
+                    </div><!---->
+                </div>
+            </div>
+        </div>
+    </div>
+</div></bramble-ide-menu-snippets>
+<bramble-ide-menu-media><div class="bramble-ide-menu-media">
+    <a id="bramble-ide-menu-media" class="tool fa fa-picture-o" ng-click="vm.toggleMenu()" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+
+    <div class="bramble-ide-menu-media-container bramble-ide-menu is-closed">
+        <div class="bramble-ide-menu-media-content">
+            <header class="bramble-ide-menu-media-header">
+                <h2 class="bramble-ide-menu-media-title">Media Library</h2>
+            </header>
+
+            <div class="bramble-ide-menu-media-main">
+                <ul class="bramble-ide-menu-media-main-list">
+                    <!----><li ng-repeat="category in vm.categories" ng-click="vm.selectCategory(category)" ng-class="{selected: category.id === vm.activeCategoryId}" class="selected">
+                        Photos
+                    </li><!----><li ng-repeat="category in vm.categories" ng-click="vm.selectCategory(category)" ng-class="{selected: category.id === vm.activeCategoryId}">
+                        Textures
+                    </li><!----><li ng-repeat="category in vm.categories" ng-click="vm.selectCategory(category)" ng-class="{selected: category.id === vm.activeCategoryId}">
+                        Gradients
+                    </li><!----><li ng-repeat="category in vm.categories" ng-click="vm.selectCategory(category)" ng-class="{selected: category.id === vm.activeCategoryId}">
+                        Miscellaneous
+                    </li><!---->
+                </ul>
+
+                <ul class="bramble-ide-menu-media-main-preview">
+                    <!----><li ng-repeat="media in vm.media" class="is-image" title="aerial.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/aerial-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/aerial-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="buildings.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/buildings-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/buildings-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="buildings-2.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/buildings-2-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/buildings-2-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="cactus.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/cactus-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/cactus-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="cave.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/cave-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/cave-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="city-lights.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/city-lights-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/city-lights-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="desert.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/desert-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/desert-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="forest.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/forest-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/forest-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="glass.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/glass-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/glass-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="marble-macro.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/marble-macro-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/marble-macro-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="underwater.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/underwater-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/underwater-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="universe.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/universe-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/universe-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="urban.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/urban-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/urban-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="western.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/western-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/western-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="winter.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/winter-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/winter-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="thailand.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/thailand-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/thailand-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="tree-sunset.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/tree-sunset-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/tree-sunset-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="river.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/river-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/river-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="boat-in-water.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/boat-in-water-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/boat-in-water-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="lake-and-mountains.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/lake-and-mountains-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/lake-and-mountains-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="kitty-summer.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/kitty-summer-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/kitty-summer-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="max-playing.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/max-playing-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/max-playing-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="max-winter.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/max-winter-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/max-winter-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="chocolates.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/chocolates-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/chocolates-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="dog-reading.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/dog-reading-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/dog-reading-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="rainy-day.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/rainy-day-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/rainy-day-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="snowboard.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/snowboard-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/snowboard-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="bird-1.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/bird-1-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/bird-1-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="bird-2.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/bird-2-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/bird-2-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="bird-3.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/bird-3-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/bird-3-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="bird-4.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/bird-4-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/bird-4-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="bird-5.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/bird-5-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/bird-5-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image" title="bird-6.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/photos/bird-6-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/photos/bird-6-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="texture1.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/textures/texture1-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/textures/texture1-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="texture2.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/textures/texture2-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/textures/texture2-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="texture3.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/textures/texture3-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/textures/texture3-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="texture4.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/textures/texture4-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/textures/texture4-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="texture5.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/textures/texture5-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/textures/texture5-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="texture6.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/textures/texture6-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/textures/texture6-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="texture7.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/textures/texture7-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/textures/texture7-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="texture8.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/textures/texture8-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/textures/texture8-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="texture9.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/textures/texture9-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/textures/texture9-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="texture10.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/textures/texture10-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/textures/texture10-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="gradient1.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/gradients/gradient1-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/gradients/gradient1-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="gradient2.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/gradients/gradient2-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/gradients/gradient2-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="gradient3.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/gradients/gradient3-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/gradients/gradient3-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="gradient4.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/gradients/gradient4-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/gradients/gradient4-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="gradient5.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/gradients/gradient5-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/gradients/gradient5-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="gradient6.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/gradients/gradient6-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/gradients/gradient6-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="gradient7.jpg" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/gradients/gradient7-thumbnail.jpg)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/gradients/gradient7-thumbnail.jpg&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="grass.png" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/miscellaneous/grass.png?thumb)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/miscellaneous/grass.png?thumb&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="gravel.png" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/miscellaneous/gravel.png?thumb)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/miscellaneous/gravel.png?thumb&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="rock.png" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/miscellaneous/rock.png?thumb)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/miscellaneous/rock.png?thumb&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="water.png" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/miscellaneous/water.png?thumb)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/miscellaneous/water.png?thumb&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="tree.png" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/miscellaneous/tree.png?thumb)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/miscellaneous/tree.png?thumb&quot;);">
+                    </li><!----><li ng-repeat="media in vm.media" class="is-image is-hidden" title="mage.png" ng-class="{&#39;is-hidden&#39;: media.category !== vm.activeCategoryId, &#39;is-loading&#39;: media.loading}" ng-style="{&#39;background-image&#39;: media.type == &#39;image&#39; ? &#39;url(https://images.tynker.com/code-editor/media-library/miscellaneous/mage.png?thumb)&#39; : &#39;&#39;}" ng-click="vm.handleMediaClick(media)" style="background-image: url(&quot;https://images.tynker.com/code-editor/media-library/miscellaneous/mage.png?thumb&quot;);">
+                    </li><!---->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</bramble-ide-menu-media>
+
+<a id="redo" class="tool fa fa-repeat" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+<a id="undo" class="tool fa fa-undo" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"> <span>Undo<span></span></span></a>
+<bramble-ide-microbit><!---->
+</bramble-ide-microbit>
+<bramble-ide-hifive><!---->
+</bramble-ide-hifive>
+</div>
+</div>
+</div><div id="preview" class="preview" style="width: 436px;">
+<div class="nav-container">
+<bramble-ide-preview-tabs><div class="bramble-ide-preview-tabs">
+    <div class="preview-tutorial-toggle ng-hide" ng-show="vm.showTutorialTab">
+        <span id="tutorial-title" class="preview-pane-nav-title preview-title-highlighted" ng-class="{&#39;preview-title-highlighted&#39;: vm.highlightedTab === vm.TABS.tutorial}" ng-click="vm.onTutorialClick()">Tutorial</span>
+        <!---->
+    </div>
+</div></bramble-ide-preview-tabs>
+<a id="minimize" class="minimize fa fa-compress hidden" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+<a id="maximize" class="maximize fa fa-expand" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+<a id="refresh" class="run" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"><i class="fa fa-play"></i> Play</a>
+<bramble-ide-menu-device><div class="bramble-ide-menu-device">
+    <div class="bramble-ide-menu-device-buttons" ng-show="vm.showButtons">
+        <a id="preview-pane-nav-desktop" class="bramble-ide-menu-device-button fa fa-desktop" ng-class="{&#39;is-inactive&#39;: vm.activeMode !== vm.MODES.desktop}" ng-click="vm.activateMode(vm.MODES.desktop)" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+        <a id="preview-pane-nav-mobile" class="bramble-ide-menu-device-button fa fa-mobile is-inactive" ng-class="{&#39;is-inactive&#39;: vm.activeMode !== vm.MODES.mobile}" ng-click="vm.activateMode(vm.MODES.mobile)" href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+    </div>
+</div></bramble-ide-menu-device>
+</div>
+</div>
+</div>
+<div id="tynker-logo" style="width: 200px;"></div>
+<div id="project-submitentry" class="idedialog hidden">
+<span class="spinner">
+<div class="rect1"></div>
+<div class="rect2"></div>
+<div class="rect3"></div>
+<div class="rect4"></div>
+<div class="rect5"></div>
+</span>
+<div class="modal">
+<span class="message">
+Enter the Nasa 2019 Hackathon
+</span>
+<div class="screenshot">
+<div class="scimg">
+<img src="./blank.png">
+</div>
+<div class="tags" style="display:none">
+<label><input name="art" type="checkbox"> art</label>
+<label><input name="game" type="checkbox"> game</label>
+<label><input name="learn" type="checkbox"> learn</label>
+<label><input name="robotics" type="checkbox"> robotics</label>
+<label><input name="story" type="checkbox"> story</label>
+<label><input name="video" type="checkbox"> video</label>
+<input type="text" placeholder="Other Tags">
+<input type="hidden">
+</div>
+</div>
+<div class="details">
+<div>
+<span class="label">Project Name</span>
+<input class="projectname" type="text" name="name">
+</div>
+<div>
+<span class="label">Description</span>
+<textarea rows="10" cols="40" placeholder="Say something about your project and tell how to play it!"></textarea>
+</div>
+</div>
+<div class="buttonbar">
+<a href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#" class="btn-right btn-round medium action saveBtn">Submit</a>
+<a href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#" class="btn-right btn-round medium secondary cancelBtn">Cancel</a>
+</div>
+<a href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#close-modal" rel="modal:close" class="close-modal"></a>
+</div>
+</div>
+<div id="project-unsubmitentry" class="idedialog hidden">
+<span class="spinner">
+<div class="rect1"></div>
+<div class="rect2"></div>
+<div class="rect3"></div>
+<div class="rect4"></div>
+<div class="rect5"></div>
+</span>
+<div class="modal">
+<h4>Tynker</h4>
+<h2>Moon 2 Mars Challenges</h2>
+<div class="screenshot">
+<img src="./blank.png">
+</div>
+<div class="details2">
+<span>Your project</span>
+<span class="projectname">Project Name</span>
+<span>is entered</span>
+</div>
+<div class="buttonbar">
+<a href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#" class="btn-right btn-round medium action resubmitBtn">Resubmit Entry</a>
+<a href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#" class="btn-left btn-round medium removeEntryBtn white">Withdraw Entry</a>
+</div>
+<a href="https://www.tynker.com/code/project/hosted?id=607e538b3c6c1c64567bcd17&amp;mode=#close-modal" rel="modal:close" class="close-modal"></a>
+</div>
+</div>
+<bramble-ide-quickdocs></bramble-ide-quickdocs>
+<bramble-ide-instructions></bramble-ide-instructions>
+<bramble-ide-comments></bramble-ide-comments>
+<bramble-ide-leave-dialog></bramble-ide-leave-dialog>
+<bramble-ide-selective-auto-update></bramble-ide-selective-auto-update>
+<script src="./jquery.js"></script>
+<script src="./require.min.js" data-main="edit"></script>
+
+<script type="module" src="./runtime-bramble_ide_modern.e90b8821.js"></script>
+<script type="module" src="./vendor-bramble_ide_modern.a03f3eca.js"></script>
+<script type="module" src="./bramble_ide_modern.357e4724.js"></script>
+<script nomodule="" src="./runtime-bramble_ide_legacy.2b1e8fdb.js"></script>
+<script nomodule="" src="./vendor-bramble_ide_legacy.8240ada4.js"></script>
+<script nomodule="" src="./bramble_ide_legacy.f913b895.js"></script>
+<link rel="stylesheet" type="text/css" href="./bramble_ide_legacy.8b00496f.css">
+
+
+</body></html>

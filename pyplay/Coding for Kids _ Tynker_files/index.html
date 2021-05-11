@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<!-- saved from url=(0080)https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&mode= -->
+<html spellcheck="false"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>index.html (607e538b3c6c1c64567bcd17) — Brackets</title>
+
+<style>
+        /*
+         * Initial loading spinner css, inlined so we don't block loading.
+         * Spinner is based on https://github.com/tobiasahlin/SpinKit (MIT)
+         */
+        #spinner-container {
+            height: 100vh;
+            background-color: #f8f8f8;
+        }
+
+        .sk-spinner-rotating-plane.sk-spinner {
+            bottom: 0;
+            top: -60px; /* Account for the topbar */
+            left: 0;
+            right: 0;
+            margin: auto;
+            position: absolute;
+            max-width: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: #47484b;
+            -webkit-animation: sk-rotatePlane 2s infinite ease-in-out;
+                    animation: sk-rotatePlane 2s infinite ease-in-out;
+            /**
+             * Fix for Firefox's jagged edges:
+             * http://stackoverflow.com/questions/9235342/3d-css-transform-jagged-edges-in-firefox
+             */
+            outline: 1px solid transparent;
+            background-image: url("tynker-icon-100.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        @-webkit-keyframes sk-rotatePlane {
+            0% {
+                -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+                        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+            }
+            25% {
+                -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+                        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+            }
+            50% {
+                -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            }
+            75% {
+                -webkit-transform: perspective(120px) rotateX(-360deg) rotateY(-179.9deg);
+                        transform: perspective(120px) rotateX(-360deg) rotateY(-179.9deg);
+            }
+            100% {
+                -webkit-transform: perspective(120px) rotateX(-360deg) rotateY(-360deg);
+                        transform: perspective(120px) rotateX(-360deg) rotateY(-360deg);
+            }
+        }
+
+        @keyframes sk-rotatePlane {
+            0% {
+                -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+                        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+            }
+            25% {
+                -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+                        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+            }
+            50% {
+                -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            }
+            75% {
+                -webkit-transform: perspective(120px) rotateX(-360deg) rotateY(-179.9deg);
+                        transform: perspective(120px) rotateX(-360deg) rotateY(-179.9deg);
+            }
+            100% {
+                -webkit-transform: perspective(120px) rotateX(-360deg) rotateY(-360deg);
+                        transform: perspective(120px) rotateX(-360deg) rotateY(-360deg);
+            }
+        }
+
+        #main-view {
+            height: 100vh;
+            visibility: hidden;
+        }
+
+        #iframe-warning {
+            display: none;
+            padding: 20px;
+            font-size: 16px;
+        }
+
+        /* Popover for the inline help (quick docs) */
+        #popover-container span.popover-help-icon:after {
+            background-image: url("./help-icon.svg");
+            background-size: 100%;
+        }
+
+        /* Modal extensions */
+        /* @dfrancisco TODO Move these styles */
+        .modal-instructions ol {
+            list-style-type: none;
+            margin: 0;
+            margin-bottom: 2rem;
+            padding: 0;
+            display: flex;
+            text-align: center;
+        }
+        .modal-instructions li {
+            flex: 1;
+        }
+        .modal-instructions img {
+            width: 100%;
+        }
+        .modal-instructions .modal-step-counter {
+            font-size: 1rem;
+            line-height: 2rem;
+            border-radius: 50%;
+            background: #7238d2;
+            color: #fff;
+            height: 2rem;
+            width: 2rem;
+            margin-right: 0.25rem;
+            display: inline-block;
+        }
+        .modal-instructions .modal-step-title {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .modal-instructions .modal-step-description {
+            display: block;
+            padding: 0 10px;
+        }
+
+        /* @dfrancisco TODO: Move this */
+        .modal-save-as input[type="text"].project-name,
+        .modal-save-as input[type="text"].project-name:focus,
+        .modal-save-as input[type="text"].project-name:active {
+            background-color: #fff;
+            border: 1px solid #b2b5b5;
+            color: #000;
+            font-size: 16px;
+            padding: 6px;
+        }
+    </style>
+
+<link rel="stylesheet" type="text/css" href="./brackets.min.css">
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="main" src="./main.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="text" src="./text.js"></script><style id="scrollbars"></style><style>#editor-holder .cm-string{color:#4f8eb2}#editor-holder .cm-error{color:#ed488b!important}#editor-holder .cm-meta,#editor-holder .cm-comment{color:rgba(255,255,255,.3)}#editor-holder .cm-atom,#editor-holder .cm-number,#editor-holder .cm-link{color:#ae81ff}#editor-holder .cm-property,#editor-holder .cm-attribute,#editor-holder .cm-keyword{color:#a0779f}#editor-holder .cm-string.cm-property,#editor-holder .cm-variable,#editor-holder .cm-variable-2{color:rgba(255,255,255,.85)}#editor-holder .cm-variable-3,#editor-holder .cm-qualifier,#editor-holder .cm-builtin{color:#a6e22e}#editor-holder .cm-operator,#editor-holder .cm-tag{color:#5ba87e}#editor-holder .cm-bracket,#editor-holder .cm-def{color:#5ba87e}#editor-holder .CodeMirror-gutter:after{content:"";position:absolute;height:100%;width:0;right:0;border-right:solid 1px rgba(255,255,255,.1)}#editor-holder .CodeMirror,#editor-holder .CodeMirror .CodeMirror-scroll{background:#222;color:rgba(255,255,255,.85)}#editor-holder #not-editor,#editor-holder #image-holder{background-color:#222;color:#f8f8f2;-webkit-transition:background-color .3s ease-out;transition:background-color .3s ease-out}#editor-holder .image-view{background:#222}#editor-holder .CodeMirror{border-left-color:#1b1b1b}#editor-holder div.CodeMirror-selected{background:#444!important}#editor-holder .CodeMirror-gutters{background:#222}#editor-holder .CodeMirror-linenumbers{background:#222}#editor-holder .CodeMirror-guttermarker{color:#f8f8f2}#editor-holder .CodeMirror-guttermarker-subtle{color:#272822}#editor-holder .CodeMirror-linenumber{color:rgba(255,255,255,.3)}#editor-holder .CodeMirror-cursor{border-left:1px solid #f8f8f0!important}#editor-holder .CodeMirror-activeline-background,#editor-holder .CodeMirror-focused .CodeMirror-activeline .CodeMirror-gutter-elt{background:#373831!important}#editor-holder .CodeMirror-focused .CodeMirror-activeline .CodeMirror-gutter-elt{color:#f8f8f2}#editor-holder .CodeMirror-focused .CodeMirror-activeline .inline-widget .CodeMirror-gutter-elt{color:#767676}#editor-holder .CodeMirror-matchingbracket{background-color:transparent!important;border-bottom:1px solid;color:#fff!important;padding-bottom:.166em}#editor-holder .CodeMirror-matchingtag{background-color:rgba(56,174,113,.2)}#editor-holder .CodeMirror.cm-keymap-fat-cursor div.CodeMirror-cursor{background:rgba(248,248,242,.5)!important}#editor-holder .CodeMirror .cm-dk-whitespace-space::before,#editor-holder .CodeMirror .cm-dk-whitespace-tab::before,#editor-holder .CodeMirror .cm-dk-whitespace-leading-space::before,#editor-holder .CodeMirror .cm-dk-whitespace-leading-tab::before,#editor-holder .CodeMirror .cm-dk-whitespace-trailing-space::before,#editor-holder .CodeMirror .cm-dk-whitespace-trailing-tab::before{background-color:#75715e!important}</style><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/CSSCodeHints" data-requiremodule="main" src="./main(1).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/PYCodeHints" data-requiremodule="main" src="./main(2).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/HTMLCodeHints" data-requiremodule="main" src="./main(3).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/CSSAtRuleCodeHints" data-requiremodule="main" src="./main(4).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/CSSPseudoSelectorHints" data-requiremodule="main" src="./main(5).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/HtmlEntityCodeHints" data-requiremodule="main" src="./main(6).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/extra/JavaScriptCodeHints-Browser" data-requiremodule="main" src="./main(7).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/InlineColorEditor" data-requiremodule="main" src="./main(8).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/InlineBorderRadiusEditor" data-requiremodule="main" src="./main(9).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/InlineBoxModelEditor" data-requiremodule="main" src="./main(10).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/Inline3DParametersEditor" data-requiremodule="main" src="./main(11).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/JavaScriptQuickEdit" data-requiremodule="main" src="./main(12).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/QuickView" data-requiremodule="main" src="./main(13).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/extra/WebPlatformDocs" data-requiremodule="main" src="./main(14).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/bramble" data-requiremodule="main" src="./main(15).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/Autosave" data-requiremodule="main" src="./main(16).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/BrambleUrlCodeHints" data-requiremodule="main" src="./main(17).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/UploadFiles" data-requiremodule="main" src="./main(18).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/bramble-move-file" data-requiremodule="main" src="./main(19).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/default/brackets-show-whitespace" data-requiremodule="main" src="./main(20).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/extra/brackets-fonts-viewer" data-requiremodule="main" src="./main(21).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="extensions/extra/PDFView" data-requiremodule="main" src="./main(22).js"></script><link type="text/css" rel="stylesheet" href="./main.css"><link type="text/css" rel="stylesheet" href="./main(23).css"><link type="text/css" rel="stylesheet" href="./main(24).css"><link type="text/css" rel="stylesheet" href="./main(25).css"><link type="text/css" rel="stylesheet" href="./QuickView.css"><link type="text/css" rel="stylesheet" href="./WebPlatformDocs.css"><link type="text/css" rel="stylesheet" href="./consoleTheme.css"><link type="text/css" rel="stylesheet" href="./style.css"><link type="text/css" rel="stylesheet" href="./styles.css"><link type="text/css" rel="stylesheet" href="./style(1).css"><link type="text/css" rel="stylesheet" href="./style(2).css"><link type="text/css" rel="stylesheet" href="./styles(1).css"><style>/*
+ * Copyright (c) 2012 - present Adobe Systems Incorporated. All rights reserved.
+ *  
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"), 
+ * to deal in the Software without restriction, including without limitation 
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ * and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+ *  
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *  
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * DEALINGS IN THE SOFTWARE.
+ * 
+ */
+.CodeMirror .highlight {
+  background: #ecc;
+}
+.CodeMirror .flash {
+  -webkit-animation: flash 1s;
+}
+@-webkit-keyframes flash {
+  from {
+    background: #ecc;
+  }
+  to {
+    background: inherit;
+  }
+}
+</style><style type="text/css" id="codemirror-dynamic-font-family">.CodeMirror{ font-family: 'Menlo Regular', Consolas, Inconsolata, 'Vera Sans', 'Lucida Console', Courier, monospace, fixed }</style><style type="text/css" id="codemirror-dynamic-fonts">.CodeMirror{ font-size: 15px !important }</style><link type="text/css" rel="stylesheet" href="./brackets-css-hints.css"><link type="text/css" rel="stylesheet" href="./styles(2).css"><link type="text/css" rel="stylesheet" href="./brackets-js-hints.css"><link type="text/css" rel="stylesheet" href="./main(26).css"><link type="text/css" rel="stylesheet" href="./main(27).css"><style>/*
+ * dkehrig.show-whitespace whitespace colors template.
+ */
+
+/* Light theme */
+.CodeMirror .cm-dk-whitespace-space:before,
+.CodeMirror .cm-dk-whitespace-tab:before { background-color: #ccc; }
+.CodeMirror .cm-dk-whitespace-leading-space:before,
+.CodeMirror .cm-dk-whitespace-leading-tab:before { background-color: #ccc; }
+.CodeMirror .cm-dk-whitespace-empty-line-space:before,
+.CodeMirror .cm-dk-whitespace-empty-line-tab:before { background-color: #ccc; }
+.CodeMirror .cm-dk-whitespace-trailing-space:before,
+.CodeMirror .cm-dk-whitespace-trailing-tab:before { background-color: #ff0000; }
+.CodeMirror .cm-dk-whitespace-nonbrk-space:before,
+.CodeMirror .cm-dk-whitespace-leading-nonbrk-space:before,
+.CodeMirror .cm-dk-whitespace-empty-line-nonbrk-space:before,
+.CodeMirror .cm-dk-whitespace-trailing-nonbrk-space:before { background-color: #ff0000; }
+
+/* Dark theme */
+.dark .CodeMirror .cm-dk-whitespace-space:before,
+.dark .CodeMirror .cm-dk-whitespace-tab:before { background-color: #686963; }
+.dark .CodeMirror .cm-dk-whitespace-leading-space:before,
+.dark .CodeMirror .cm-dk-whitespace-leading-tab:before { background-color: #686963; }
+.dark .CodeMirror .cm-dk-whitespace-empty-line-space:before,
+.dark .CodeMirror .cm-dk-whitespace-empty-line-tab:before { background-color: #686963; }
+.dark .CodeMirror .cm-dk-whitespace-trailing-space:before,
+.dark .CodeMirror .cm-dk-whitespace-trailing-tab:before { background-color: #ff0000; }
+.dark .CodeMirror .cm-dk-whitespace-nonbrk-space:before,
+.dark .CodeMirror .cm-dk-whitespace-leading-nonbrk-space:before,
+.dark .CodeMirror .cm-dk-whitespace-empty-line-nonbrk-space:before,
+.dark .CodeMirror .cm-dk-whitespace-trailing-nonbrk-space:before { background-color: #ff0000; }
+</style></head>
+<body class="platform-mac in-browser dark" data-theme="dark-theme">
+
+<strong><strong>
+
+<div id="main-view" style="visibility: visible;"><!--
+  Copyright (c) 2012 - present Adobe Systems Incorporated. All rights reserved.
+
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the "Software"),
+  to deal in the Software without restriction, including without limitation
+  the rights to use, copy, modify, merge, publish, distribute, sublicense,
+  and/or sell copies of the Software, and to permit persons to whom the
+  Software is furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+  DEALINGS IN THE SOFTWARE.
+-->
+
+
+<!--
+    HTML template for the body tag of index.html. It is rendered dynamically in
+    brackets.js with Mustache and localized with the i18n RequireJS plugin.
+
+    LOCALIZATION NOTE:
+    All display text for this file must use templating so the text can be localized.
+
+    English text goes in src/nls/root/strings.js. All other translations go in the strings.js file for
+    the specific local in the nls folder. If a translation is missing for a specific key English
+    is used as a fallback
+
+    Strings should be referenced using the double brackets syntax.
+    Example: . Note, all strings are HTML escaped unless the form
+     is used.
+
+-->
+
+    <!-- Main UI: horizontal set of sidebar, main content vertical stack, and vertical toolbar -->
+    <div class="main-view">
+        <div id="sidebar" class="sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible" data-minsize="0" data-maxsize="80%" data-forceleft=".content" style="box-sizing: border-box; display: flex; width: 200px;"><div class="horz-resizer" style="left: 200px;"></div>
+            
+            <div class="working-set-option-btn btn-alt-quiet" title="Configure Working Set" style="display: block;"></div>
+
+            <div id="working-set-list-container" style="display: block;">
+
+            <div class="working-set-view" id="working-set-list-first-pane">
+    <div class="working-set-header" style="display: block;"><span class="working-set-header-title">Left</span></div>
+    <div class="open-files-container" style="overflow: hidden auto; position: relative; display: block;"><div class="sidebar-selection forced-hidden" style="display: none; width: 0px;"></div>
+        <!-- This will contain runtime-generated <li>'s for each file in the working set -->
+        <ul><li class="selected"><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#">index<span class="extension">.html</span></a></li></ul>
+    <div class="scroller-shadow top" style="background-position: 0px -5px; top: 0px; width: 0px; display: block;"></div><div class="scroller-shadow bottom" style="background-position: 0px 5px; top: -5px; width: 0px; display: block;"></div><div class="sidebar-selection-extension selectionExtension-visible forced-hidden" style="display: none; left: 191px; top: 0px; clip: rect(1px, auto, 1px, auto);"></div></div>
+<div></div></div><div class="working-set-view hideLeftToolbar" id="working-set-list-second-pane">
+    <div class="working-set-header"><span class="working-set-header-title">Right</span></div>
+    <div class="open-files-container" style="overflow: hidden auto; position: relative; display: block;"><div class="sidebar-selection forced-hidden" style="display: none; width: 0px;"></div>
+        <!-- This will contain runtime-generated <li>'s for each file in the working set -->
+        <ul>
+        </ul>
+    <div class="scroller-shadow top" style="background-position: 0px -5px; top: 0px; width: 0px; display: block;"></div><div class="scroller-shadow bottom" style="background-position: 0px 5px; top: -5px; width: 0px; display: block;"></div><div class="sidebar-selection-extension forced-hidden selectionExtension-visible" style="display: block; left: 191px; top: 0px; clip: rect(1px, auto, 1px, auto);"></div></div>
+<div></div></div></div>
+            <div id="project-files-header">
+                <span id="project-title" class="title" title="/project/607e538b3c6c1c64567bcd17/">607e538b3c6c1c64567bcd17</span>
+            </div>
+            <div id="project-files-container" class="jstree jstree-brackets" style="overflow: auto; position: relative;">
+                <!-- This will contain a dynamically generated <ul> hierarchy at runtime -->
+            <div><div data-reactid=".0"><div style="overflow: auto; left: 0px; display: block; top: 12px;" class="filetree-selection" data-reactid=".0.0"></div><div style="overflow:auto;left:0;display:none;" class="filetree-context" data-reactid=".0.1"></div><div style="display: block; top: 12px; height: 23px; left: 191px;" class="filetree-selection-extension" data-reactid=".0.2" data-initial-height="23"></div><div style="display:none;" class="filetree-context-extension" data-reactid=".0.3"></div><ul class="jstree-brackets jstree-no-dots jstree-no-icons" data-reactid=".0.4"><li class="jstree-leaf" draggable="true" data-reactid=".0.4.$index=1html"><ins class="jstree-icon-html" data-reactid=".0.4.$index=1html.0"></ins><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" class="jstree-clicked selected-node" data-reactid=".0.4.$index=1html.1"><span class="menuToggle" data-reactid=".0.4.$index=1html.1.0"></span><div style="display:inline-block;width:10px;" data-reactid=".0.4.$index=1html.1.1"></div><ins class="jstree-icon" data-reactid=".0.4.$index=1html.1.2"> </ins><span data-reactid=".0.4.$index=1html.1.3">index</span><span class="extension" data-reactid=".0.4.$index=1html.1.4">.html</span></a></li></ul></div></div><div class="scroller-shadow top" style="background-position: 0px -5px; top: 0px; width: 200px; display: block;"></div></div>
+            <!-- div id="project-size-info">
+                <div class="space-available">
+                    <div class="space-used-bar"></div>
+                </div>
+                <p class="space-used-summary">
+                    <strong class="space-used"></strong> of
+                    <strong class="max-project-size"></strong> used
+                </p>
+            </div -->
+        </div>
+
+        <!--
+            Vertical stack of titlebar (in-browser), editor, bottom panels, status bar
+                (status bar is injected later - see StatusBar.init()).
+            Note: all children must be in a vertical stack with heights explicitly set in a fixed
+                unit such as px (not percent/em/auto). If you change the height later, you must
+                call WorkspaceManager.recomputeLayout() each time. Otherwise the layout will
+                not get set correctly. Use WorkspaceManager to have this managed for you automatically.
+         -->
+        <div class="content hideRightToolbar" style="left: 200px;">
+            <!-- Horizontal titlebar containing menus & filename when inBrowser -->
+            
+
+            <div id="editor-holder" style="height: 612px;" class="subpixel-aa split-vertical editor-holder-height"><div class="horz-resizer" style="left: 802px;"></div>
+                <!-- View Panes are programatically created here -->
+            <div id="first-pane" class="view-pane active-pane" style="height: 100%; width: 64.7004%; box-sizing: border-box; float: left;">
+    
+    <div class="pane-content first-pane-height" style="height: 612px;">
+        <div class="not-editor" style="display: none;"></div>
+    <div class="CodeMirror CodeMirror-wrap cm-s-dark-theme" style="height: 612px;"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 579px; left: 41px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true" style="width: 18px; pointer-events: none; bottom: 0px; display: block;"><div style="min-width: 1px; height: 732px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true" style="height: 18px; pointer-events: none;"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 31px; margin-bottom: 0px; border-right-width: 30px; min-height: 732px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style=""><div class="CodeMirror-cursor" style="left: 0px; top: 684px; height: 18px;">&nbsp;</div></div><div class="CodeMirror-code" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">form</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">select</span> <span class="cm-attribute">id</span>=<span class="cm-string">"listofisto"</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " style="text-indent: -18.0031px; padding-left: 18.0031px;"><span style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">option</span><span class="cm-tag cm-bracket">&gt;</span>pancake<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">option</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " style="text-indent: -18.0031px; padding-left: 18.0031px;"><span style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">option</span><span class="cm-tag cm-bracket">&gt;</span>pizza<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">option</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " style="text-indent: -18.0031px; padding-left: 18.0031px;"><span style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">option</span><span class="cm-tag cm-bracket">&gt;</span>fruit<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">option</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">select</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">input</span> <span class="cm-attribute">type</span>=<span class="cm-string">"button"</span> <span class="cm-attribute">onclick</span>=<span class="cm-string">"javascript:disable();"</span> <span class="cm-attribute">value</span>=<span class="cm-string">"Disable list"</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">input</span> <span class="cm-attribute">type</span>=<span class="cm-string">"button"</span> <span class="cm-attribute">onclick</span>=<span class="cm-string">"javscript:enable();"</span> <span class="cm-attribute">value</span>=<span class="cm-string">"Enable list"</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">input</span> <span class="cm-attribute">type</span>=<span class="cm-string">"button"</span> <span class="cm-attribute">onclick</span>=<span class="cm-string">"javascript:compliment();"</span> <span class="cm-attribute">value</span>=<span class="cm-string">"enter choice"</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div class="" style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">input</span> <span class="cm-attribute">type</span>=<span class="cm-string">"button"</span> <span class="cm-attribute">onclick</span>=<span class="cm-string">"javascript:print()"</span> <span class="cm-attribute">value</span>=<span class="cm-string">"print page"</span></span></pre></div><div style="position: relative;" class="live-preview-sync-error"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-error">&lt;/form&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " style="text-indent: -36.0063px; padding-left: 36.0063px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">function</span> <span class="cm-def">disable</span>() {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " style="text-indent: -72.0125px; padding-left: 72.0125px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">document</span>.<span class="cm-property">getElementById</span>(<span class="cm-string">"listofisto"</span>).<span class="cm-property">disabled</span> <span class="cm-operator">=</span> <span class="cm-atom">true</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " style="text-indent: -72.0125px; padding-left: 72.0125px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line " style="text-indent: -36.0063px; padding-left: 36.0063px;"><span style="padding-right: 0.1px;"> &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line " style="text-indent: -36.0063px; padding-left: 36.0063px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">function</span> <span class="cm-def">enable</span>() {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line " style="text-indent: -72.0125px; padding-left: 72.0125px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">document</span>.<span class="cm-property">getElementById</span>(<span class="cm-string">"listofisto"</span>).<span class="cm-property">disabled</span> <span class="cm-operator">=</span> <span class="cm-atom">false</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">21</div></div><pre class=" CodeMirror-line " style="text-indent: -72.0125px; padding-left: 72.0125px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">22</div></div><pre class=" CodeMirror-line " style="text-indent: -36.0063px; padding-left: 36.0063px;"><span style="padding-right: 0.1px;"> &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">23</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">24</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">25</div></div><pre class=" CodeMirror-line " style="text-indent: -36.0063px; padding-left: 36.0063px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">function</span> <span class="cm-def">compliment</span>() {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">26</div></div><pre class=" CodeMirror-line " style="text-indent: -72.0125px; padding-left: 72.0125px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">var</span> <span class="cm-def">x</span> <span class="cm-operator">=</span> <span class="cm-variable">document</span>.<span class="cm-property">getElementById</span>(<span class="cm-string">"listofisto"</span>).<span class="cm-property">value</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">27</div></div><pre class=" CodeMirror-line " style="text-indent: -72.0125px; padding-left: 72.0125px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">if</span> (<span class="cm-variable-2">x</span> <span class="cm-operator">==</span><span class="cm-string">"fruit"</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">28</div></div><pre class=" CodeMirror-line " style="text-indent: -108.019px; padding-left: 108.019px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">alert</span>(<span class="cm-string">"good job for choosing healthy. "</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">29</div></div><pre class=" CodeMirror-line " style="text-indent: -72.0125px; padding-left: 72.0125px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">30</div></div><pre class=" CodeMirror-line " style="text-indent: -72.0125px; padding-left: 72.0125px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">else</span> <span class="cm-keyword">if</span>(<span class="cm-variable-2">x</span> <span class="cm-operator">==</span><span class="cm-string">"pancake"</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">31</div></div><pre class=" CodeMirror-line " style="text-indent: -108.019px; padding-left: 108.019px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">alert</span>(<span class="cm-string">'they are not my favorite.'</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">32</div></div><pre class=" CodeMirror-line " style="text-indent: -72.0125px; padding-left: 72.0125px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">33</div></div><pre class=" CodeMirror-line " style="text-indent: -72.0125px; padding-left: 72.0125px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">else</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">34</div></div><pre class=" CodeMirror-line " style="text-indent: -108.019px; padding-left: 108.019px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">alert</span>(<span class="cm-string">'I like pizza too'</span>);</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">35</div></div><pre class=" CodeMirror-line " style="text-indent: -72.0125px; padding-left: 72.0125px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">36</div></div><pre class=" CodeMirror-line " style="text-indent: -72.0125px; padding-left: 72.0125px;"><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">37</div></div><pre class=" CodeMirror-line " style="text-indent: -36.0063px; padding-left: 36.0063px;"><span style="padding-right: 0.1px;"> &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">38</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -31px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">39</div></div><pre class=" CodeMirror-line " style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 732px;"></div><div class="CodeMirror-gutters" style="height: 762px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 31px;"></div></div></div></div></div>
+</div><div class="show-console-tab" title="Open the JavaScript Console" style="width: 36px;"></div><div id="second-pane" class="view-pane" style="height: 100%; width: auto; float: none;"><iframe id="bramble-iframe-browser" frameborder="0" class="iframeWidthHeight" allow="geolocation *; microphone *; camera *" src="./index(1).html"></iframe></div></div>
+
+            <!-- Bottom panels and status bar are programmatically created here -->
+
+        <div id="problems-panel" class="bottom-panel vert-resizable top-resizer" style="display: none; box-sizing: border-box;"><div class="vert-resizer"></div>
+    <div class="toolbar simple-toolbar-layout">
+        <div class="title"><!-- filled in programmatically --></div>
+        <a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" class="close">×</a>
+    </div>
+    <div class="table-container resizable-content"></div>
+</div><div id="find-in-files-results" class="search-results bottom-panel vert-resizable top-resizer no-focus" style="display: none; box-sizing: border-box;"><div class="vert-resizer"></div>
+    <div class="toolbar simple-toolbar-layout">
+        <div class="title"></div>
+        <a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" class="close">×</a>
+    </div>
+    <div class="table-container resizable-content"></div>
+</div><div id="editor-console" class="bottom-panel vert-resizable top-resizer" style="box-sizing: border-box; height: 200px; display: none;"><div class="vert-resizer"></div>
+    <div class="toolbar simple-toolbar-layout mainToolbar">
+        <span class="title">Console</span>
+        <button id="clearConsole" title="Clear the Console" class="clear-button">Clear</button>
+        <button title="Close the Console" href="#" class="close"></button>
+    </div>
+    <div class="console">
+      <div class="helper">
+        <span class="helper-text">To use the console, add <code>console.log("Hello World!");</code> to your JavaScript file.</span>
+      </div>
+    </div>
+</div><div id="status-bar" class="statusbar no-focus" style="display: none;">
+    <div id="status-info" class="info" style="">
+        <div id="status-cursor">Line 39, Column 1</div>
+        <div id="status-file">— 39 Lines</div>
+    </div>
+    <div id="status-indicators" class="indicators" style="">
+        <div id="status-indent">
+            <div id="indent-type" title="Click to switch indentation to tabs">Spaces:</div>
+            <div id="indent-width-label" title="Click to change number of spaces used when indenting">4</div>
+            <input id="indent-width-input" type="number" min="1" max="10" maxlength="2" size="2" class="hidden">
+        </div><div id="status-inspection" title="No linter available for HTML" class="inspection-disabled">&nbsp;</div>
+        <div id="status-language"><button class="btn btn-dropdown btn-status-bar" title="Click to change file type" style="width: auto;">HTML</button></div>
+        <div id="status-overwrite" title="Click to toggle cursor between Insert (INS) and Overwrite (OVR) modes">INS</div>
+        <div class="spinner"></div>
+    </div>
+</div>
+</div>
+
+        <!-- Vertical toolbar docked to right -->
+        <div id="main-toolbar" class="toolbar no-focus collapsible" style="box-sizing: border-box; display: none;"><div class="undefined-resizer"></div>
+            <!-- Top-aligned buttons -->
+            <div class="buttons">
+                <a id="toolbar-go-live" href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" title="Live Preview (not updating due to syntax error)" class="sync-error"></a> <!-- tooltip for this is set in JS -->
+                <a id="toolbar-extension-manager" title="" href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#"></a>
+                <a id="update-notification" title="" href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" style="display: none"></a>
+            </div>
+            <div class="bottom-buttons"></div>
+        </div>
+
+        <!-- Hack to ensure that the code editor's web font is loaded early. -->
+        <!-- For more info, see note in brackets.less for class .dummy-text, or issue 76 -->
+        <div class="dummy-text">x</div>
+    </div>
+
+    <!-- Modal Windows -->
+    <div id="context-menu-bar">
+        <ul data-dropdown="dropdown"><li class="dropdown context-menu" id="workingset-context-menu"><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" class="dropdown-toggle" data-toggle="dropdown" style="display: none;"></a><ul class="dropdown-menu"><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="workingset-context-menu-file.save" class="workingset-context-menu-filesave"><span class="menu-name">Save</span><span class="menu-shortcut">⌘S</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="workingset-context-menu-file.saveAs" class="workingset-context-menu-filesaveAs"><span class="menu-name">Save As…</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="workingset-context-menu-file.rename" class="workingset-context-menu-filerename"><span class="menu-name">Rename</span><span class="menu-shortcut">F2</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="workingset-context-menu-navigate.showInFileTree" class="workingset-context-menu-navigateshowInFileTree"><span class="menu-name">Show in File Tree</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="workingset-context-menu-navigate.showInOS" class="workingset-context-menu-navigateshowInOS"><span class="menu-name">Show in Finder</span></a></li><li><hr class="divider" id="workingset-context-menu-brackets-menuDivider-22"></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="workingset-context-menu-cmd.findInSubtree" class="workingset-context-menu-cmdfindInSubtree"><span class="menu-name">Find in…</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="workingset-context-menu-cmd.replaceInSubtree" class="workingset-context-menu-cmdreplaceInSubtree"><span class="menu-name">Replace in…</span></a></li><li><hr class="divider" id="workingset-context-menu-brackets-menuDivider-23"></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="workingset-context-menu-file.close" class="workingset-context-menu-fileclose"><span class="menu-name">Close</span></a></li></ul></li><li class="dropdown context-menu" id="workingset-configuration-menu"><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" class="dropdown-toggle" data-toggle="dropdown" style="display: none;"></a><ul class="dropdown-menu"><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="workingset-configuration-menu-cmd.sortWorkingSetByAdded" class="workingset-configuration-menu-cmdsortWorkingSetByAdded"><span class="menu-name">Sort by Added</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="workingset-configuration-menu-cmd.sortWorkingSetByName" class="workingset-configuration-menu-cmdsortWorkingSetByName"><span class="menu-name">Sort by Name</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="workingset-configuration-menu-cmd.sortWorkingSetByType" class="workingset-configuration-menu-cmdsortWorkingSetByType"><span class="menu-name">Sort by Type</span></a></li><li><hr class="divider" id="workingset-configuration-menu-brackets-menuDivider-24"></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="workingset-configuration-menu-cmd.sortWorkingSetToggleAuto" class="workingset-configuration-menu-cmdsortWorkingSetToggleAuto"><span class="menu-name">Automatic Sort</span></a></li></ul></li><li class="dropdown context-menu" id="splitview-menu"><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" class="dropdown-toggle" data-toggle="dropdown" style="display: none;"></a><ul class="dropdown-menu"><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="splitview-menu-cmd.splitViewNone" class="splitview-menu-cmdsplitViewNone"><span class="menu-name">No Split</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="splitview-menu-cmd.splitViewVertical" class="splitview-menu-cmdsplitViewVertical checked"><span class="menu-name">Vertical Split</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="splitview-menu-cmd.splitViewHorizontal" class="splitview-menu-cmdsplitViewHorizontal"><span class="menu-name">Horizontal Split</span></a></li></ul></li><li class="dropdown context-menu" id="project-context-menu"><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" class="dropdown-toggle" data-toggle="dropdown" style="display: none;"></a><ul class="dropdown-menu"><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="project-context-menu-file.newFile" class="project-context-menu-filenewFile"><span class="menu-name">New File</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="project-context-menu-file.newFolder" class="project-context-menu-filenewFolder"><span class="menu-name">New Folder</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="project-context-menu-file.rename" class="project-context-menu-filerename"><span class="menu-name">Rename</span><span class="menu-shortcut">F2</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="project-context-menu-bramble-move-file.moveFile" class="project-context-menu-bramble-move-filemoveFile"><span class="menu-name">Move To...</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="project-context-menu-file.download" class="project-context-menu-filedownload"><span class="menu-name">Download</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="project-context-menu-file.delete" class="project-context-menu-filedelete"><span class="menu-name">Delete</span></a></li></ul></li><li class="dropdown context-menu" id="inline-editor-context-menu"><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" class="dropdown-toggle" data-toggle="dropdown" style="display: none;"></a><ul class="dropdown-menu"><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="inline-editor-context-menu-navigate.toggleQuickEdit" class="inline-editor-context-menu-navigatetoggleQuickEdit"><span class="menu-name">Quick Edit</span><span class="menu-shortcut">⌘E</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="inline-editor-context-menu-edit.selectAll" class="inline-editor-context-menu-editselectAll"><span class="menu-name">Select All</span><span class="menu-shortcut">⌘A</span></a></li><li><hr class="divider" id="inline-editor-context-menu-brackets-menuDivider-25"></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="inline-editor-context-menu-navigate.previousMatch" class="inline-editor-context-menu-navigatepreviousMatch disabled"><span class="menu-name">Previous Match</span><span class="menu-shortcut">⌥↑</span></a></li><li><a href="https://www.tynker.com/code/project/index.html?id=607e538b3c6c1c64567bcd17&amp;mode=#" id="inline-editor-context-menu-navigate.nextMatch" class="inline-editor-context-menu-navigatenextMatch disabled"><span class="menu-name">Next Match</span><span class="menu-shortcut">⌥↓</span></a></li></ul></li></ul>
+    </div>
+    <div id="codehint-menu-bar">
+        <ul data-dropdown="dropdown"></ul>
+    </div>
+    <div id="hidden-editors"><div class="CodeMirror cm-s-dark-theme CodeMirror-wrap" style="display: none;"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true" style="display: block; bottom: 0px;"><div style="min-width: 1px; height: 151px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"><pre class="CodeMirror-line" style="text-indent: 0px; padding-left: 0px;"><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket CodeMirror-matchingtag">&lt;</span><span class="cm-tag CodeMirror-matchingtag">form</span><span class="cm-tag cm-bracket CodeMirror-matchingtag">&gt;</span></span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"></div><div class="CodeMirror-code"></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent;"></div><div class="CodeMirror-gutters"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 1px;"></div></div></div></div></div>
+</div>
+
+<script src="./less.min.js"></script>
+
+<script src="./thirdparty.min.js"></script>
+
+<script data-main="main" src="./require.min.js"></script>
+
+<script>window.parent.brackets = brackets;</script>
+
+
+</strong></strong><div id="popover-container" class="bubble-above" style="display: none; left: 225px; top: 460px;">
+    <div class="content hideRightToolbar"></div>
+</div><div id="function-hint-container" class="preview-bubble-above" style="display: none; top: 547px; left: 358.047px;">
+    <div class="function-hint-content brackets-js-hints"></div>
+</div><div id="quick-view-container">
+    <div class="preview-content">
+    </div>
+</div></body></html>

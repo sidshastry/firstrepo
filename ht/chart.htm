@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+    </head>
+    <body>
+        <canvas id="thecan" width="400" height="400"></canvas>
+        <script>
+            var chart = document.getElementById('thecan').getContext('2d');
+            var mych = new Chart(chart, {
+                type: 'pie',
+                data: {
+                    labels: ['chocolate', 'cake', 'icecream', 'popsicles,', 'cupcakes', 'chips', 'orange juice with sugar'],
+                    datasets: [
+                        {
+                            label: '# of votes',
+                            data: [5, 1, 7, 4, 9, 5, 1],
+                            backgroundColor: [
+                                'rgba(255, 99, 87, 33)',
+                                'rgba(33, 88, 22, 123)',
+                                'rgba(333, 22, 33, 59)',
+                                'rgba(11, 456, 33, 234)',
+                                'rgba(11, 333, 57, 357)',
+                                'rgba(333, 555, 22, 111)'
+                            ],
+                            borderColor: [
+                                'rgba(33, 444, 42, 55)',
+                                'rgba(22, 44, 75, 56)',
+                                'rgba(33, 54, 74, 467)',
+                                'rgba(33, 44, 25, 755)',
+                                'rgba(324, 555, 46, 224)',
+                                'rgba(34, 546, 364, 45)'
+                        ],
+                        borderWidth: 11,    
+                          
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                } 
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,406 @@
+
+// define Client ID and scope
+var getClasses = '';
+
+var CLIENT_ID = '151965640542-15n7u270ijovdpt03c994i51ok98ts4j.apps.googleusercontent.com'; 
+var API_KEY = 'AIzaSyDE1f3vZh0IH9mz-i5UC7QAQsT_hqY8sgA'; 
+
+if(getClasses) {
+    var SCOPES = [
+        "https://www.googleapis.com/auth/classroom.courses.readonly",
+        "https://www.googleapis.com/auth/classroom.rosters.readonly",
+        "https://www.googleapis.com/auth/classroom.coursework.me",
+        "https://www.googleapis.com/auth/classroom.coursework.me.readonly",
+        "https://www.googleapis.com/auth/classroom.coursework.students",
+        "https://www.googleapis.com/auth/classroom.coursework.students.readonly",
+        "https://www.googleapis.com/auth/classroom.profile.photos",
+        "https://www.googleapis.com/auth/classroom.profile.emails"
+    ];
+} else {
+    var SCOPES = [
+        "https://www.googleapis.com/auth/classroom.coursework.me",
+        "https://www.googleapis.com/auth/classroom.coursework.me.readonly",
+        "https://www.googleapis.com/auth/classroom.coursework.students",
+        "https://www.googleapis.com/auth/classroom.coursework.students.readonly"
+    ];
+}
+
+
+// Check if current user has authorized this application.
+function checkAuth() {
+    gapi.auth.authorize({
+        'client_id': CLIENT_ID,
+        'scope': SCOPES.join(' '),
+        'immediate': true
+    }, handleAuthResult);
+}
+
+// Handle response from authorization server.
+// @param {Object} authResult Authorization result.
+function handleAuthResult(authResult) {
+    if (authResult && !authResult.error) {
+        // Load Classroom API client library.
+        log("handleAuthResult(): success - " + JSON.stringify(authResult));
+        load();
+    }
+    else if (authResult['error'] == "immediate_failed") {
+        log("handleAuthResult(): immediate_failed - " + JSON.stringify(authResult));
+        // only if not denied first time, popup again.
+        $.ajax({
+            url: '/myclasses/api/getgcinfo',
+            type: 'GET',
+            success: function(data) {
+                $.ajax({
+                    url: '/myclasses/api/saveuserinfo',
+                    type: 'POST',
+                    data: {c: 'denied'}
+                });
+
+                $('.gc-notification').removeClass('hidden');
+                if(data.status=='ok') {
+                    requestAuth();
+                }    
+            }
+        });
+    } else if (authResult['error']) {
+        log("handleAuthResult(): error - " + JSON.stringify(authResult));
+        $('.gc-notification').removeClass('hidden');
+    }
+}
+
+// Handle response from authorization server (For immediate_failed).
+// @param {Object} authResult Authorization result.
+function handleManualAuthResult(authResult) {
+    if (authResult && !authResult.error) {
+        // Load Classroom API client library.
+        $('.gc-notification').addClass('hidden');
+        load();
+        log("handleManualAuthResult(): success - " + authResult.access_token);
+    } else {
+        log("handleManualAuthResult(): error - " + authResult.error);
+        $('.gc-notification').removeClass('hidden');
+    }
+}
+
+
+// Request current user to authorize access.
+function requestAuth() {
+    gapi.auth.authorize({
+        client_id: CLIENT_ID, scope: SCOPES, immediate: false
+    }, handleManualAuthResult);
+    return false;
+}
+
+function load() {
+    gapi.client.load('classroom', 'v1', authorized);
+}
+
+function authorized() {
+    log("authorized() - classroom api loaded");
+    if(getClasses) {
+        listClasses();
+    }
+}
+
+// List the names of the first 10 classes(courses) the user has access to. 
+// If no classes are found, ignore.
+function listClasses() {
+        // pageSize: 10
+    // no pageSize - server determines the size
+    var request = gapi.client.classroom.courses.list({
+    });
+
+    request.execute(function(resp) {
+        log("listClasses() - " + JSON.stringify(resp));
+        var classes = resp.courses;
+
+        var $elem = $('select.google_classroom_selector');
+        if (classes && classes.length > 0) {
+            $('#class_options').removeClass('hidden');
+            $('#google_classroom').removeClass('hidden');
+            $("form.custom").addClass('hidden');
+            $("#classroom_info").addClass('hidden');
+            classes = classes.filter(function(classitem) {
+                return (classitem.courseState=='ACTIVE');
+            }); 
+            $.ajax({
+                url: '/myclasses/api/saveuserinfo',
+                type: 'POST',
+                data: {state: 'enabled', type: 'google', data: classes},
+                success: function(data) {
+                    for (i = 0; i < classes.length; i++) {
+                        var gClass = classes[i];
+                        //console.log(gClass);
+                        if(data.firsttime) {
+                            $elem.append('<option value="'+gClass.id+'">'+gClass.name+'</option>');
+                        }
+                    }
+
+                    if ($(".gc-list-assignment").attr("externalid")) {
+                        listAssignments($(".gc-list-assignment").attr("externalid"));
+                    }
+                }
+            });
+
+        } else if ((resp.error && resp.error.message && resp.error.message.search('@ClassroomDisabled') ==0) ||
+            (resp.error && resp.error.message && resp.error.message.search('@NotGoogleAppsUser') ==0) ||
+            (classes && classes.length == 0)) {
+            log("listClasses(): error - " + JSON.stringify(resp));
+            $('#classroom_info').removeClass('hidden');
+            $.ajax({
+                url: '/myclasses/api/saveuserinfo',
+                type: 'POST',
+                data: {state: 'disabled', type: 'google'},
+                success: function(data) {
+                    $('.gc-notification').removeClass('hidden');
+                }
+            });
+        }
+
+    });
+}
+
+function addExternalClassroom() {
+    var $elem = $('select.google_classroom_selector');
+    var g_classid = $elem.val();
+    var g_classname = $elem.find('option:selected').text();
+    //console.log(g_classid);
+    //console.log(g_classname);
+
+    var request = gapi.client.classroom.courses.students.list({
+        courseId: g_classid
+    });
+
+    request.execute(function(resp) {
+        log("addExternalClassroom() - " + JSON.stringify(resp));
+        var students = resp.students;
+
+        var g_students = [];
+        if (students && students.length > 0) {
+            for (i = 0; i < students.length; i++) {
+                var student = students[i];
+                log("listClasses(): student - " + JSON.stringify(student));
+                g_students[i]= {
+                    externalid: student.userId,
+                    username: student.profile.emailAddress,
+                    fname: student.profile.name.givenName,
+                    lname: student.profile.name.familyName,
+                    img: student.profile.photoUrl
+                }
+            } 
+        } 
+
+        // create a classroom 
+        $.ajax({
+            url : '/myclasses/api/createExternalClass',
+            type: 'POST',
+            data : {
+               externalid: g_classid,
+               classname: g_classname,
+               students: JSON.stringify(g_students)
+            },
+            success : function(data) {
+                log("createExternalClass() - " + JSON.stringify(data));
+                if(data && data.status == 'success') {
+                    window.location = '/myclasses';
+                }
+            }
+        });
+
+    });
+}
+
+function syncClassRoster(classid, g_classid, nextPageToken="", g_students=null) {
+    //console.log("SYNC");
+    //console.log(g_classid);
+    //console.log(classid);
+
+    if(nextPageToken) {
+        var request = gapi.client.classroom.courses.students.list({
+            courseId: g_classid,
+            pageToken: nextPageToken
+        });
+    } else {
+        var request = gapi.client.classroom.courses.students.list({
+            courseId: g_classid
+        });
+        var g_students = [];
+    }
+
+      
+    request.execute(function(resp) {
+        log("syncClassRoster() - " + JSON.stringify(resp));
+        var students = resp.students;
+        nextPageToken = resp.nextPageToken;
+
+        if (students && students.length > 0) {
+            for (var i = 0; i < students.length; i++) {
+                var student = students[i];
+                log("syncClassRoster() - " + JSON.stringify(student));
+                var obj = {
+                    externalid: student.userId,
+                    username: student.profile.emailAddress,
+                    fname: student.profile.name.givenName,
+                    lname: student.profile.name.familyName,
+                    img: student.profile.photoUrl
+                };
+                g_students.push(obj);
+            } 
+        } 
+
+        // more?
+        if(nextPageToken) {
+            // get more
+            syncClassRoster(classid, g_classid, nextPageToken, g_students);
+
+        } else {
+            // all done, sync class roster 
+            $.ajax({
+                url : '/myclasses/api/syncClassRoster',
+                type: 'POST',
+                data : {
+                   id: classid,
+                   externalid: g_classid,
+                   students: JSON.stringify(g_students)
+                },
+                success : function(data) {
+                    log("syncClassRoster() - " + JSON.stringify(data));
+                    if(data && data.status == 'success') {
+                        window.location = '/myclasses/class?id='+classid;
+                    }
+                }
+            });
+        }
+
+    });
+}
+
+
+function listAssignments(g_classid) {
+    var request = gapi.client.classroom.courses.courseWork.list({
+        courseId: g_classid
+    });
+
+    request.execute(function(resp) {
+        log("listAssignments() - " + JSON.stringify(resp));
+        var coursework = resp.courseWork;
+
+        if (coursework && coursework.length > 0) {
+            for (i = 0; i < coursework.length; i++) {
+                var cw = coursework[i];
+                log("listAssignments() - #" + (i+1) + " - " + JSON.stringify(cw));
+            } 
+        } 
+    }); 
+} 
+
+function postAssignment(classId, chapterId, lessonId, g_classId, lessonNumber, lessonTitle, lessonDescription, reload) {
+
+    if (chapterId) {
+        var next = 'https://'+window.location.hostname+'/lesson/class?classid='+classId+'&chapterid='+chapterId;
+        var url1 = 'https://'+window.location.hostname+'/auth/externallogin?next='+encodeURIComponent(next);
+        var url2 = 'https://'+window.location.hostname+'/auth/googlelogin?next='+encodeURIComponent(url1);
+        var url3 = 'https://'+window.location.hostname+'/school/assignment?classid='+classId+'&chapterid='+chapterId+'&next='+encodeURIComponent(url2);
+    }  else {
+        var next = 'https://'+window.location.hostname+'/lesson/class?classid='+classId+'&lessonid='+lessonId;
+        var url1 = 'https://'+window.location.hostname+'/auth/externallogin?next='+encodeURIComponent(next);
+        var url2 = 'https://'+window.location.hostname+'/auth/googlelogin?next='+encodeURIComponent(url1);
+        var url3 = 'https://'+window.location.hostname+'/school/assignment?classid='+classId+'&lessonid='+lessonId+'&next='+encodeURIComponent(url2);
+
+    }
+    // post assignment to classroom using gapi
+    var info=[ {
+        link: {
+            url: url3
+        }
+    } ];
+
+    var title = 'Lesson ' + lessonNumber + ': ' + lessonTitle;
+
+    var request = gapi.client.classroom.courses.courseWork.create({
+        courseId: g_classId,
+        title: title,
+        description: lessonDescription,
+        materials: info,
+        state: "PUBLISHED",
+        submissionModificationMode : "MODIFIABLE_UNTIL_TURNED_IN",
+        workType : "ASSIGNMENT"
+    });
+
+    var done=false;
+    request.execute(function(resp) {
+        log("postAssignment() - " + JSON.stringify(resp));
+        $.ajax({
+            url: '/myclasses/api/saveassignmentdata',
+            type: 'POST',
+            data: {
+                classid: classId,
+                lessonid: lessonId,
+                assignmentid: resp.id
+            },
+            success: function(data) {
+               if(reload) {
+                   location.reload();
+               }
+            }
+        });
+    }); 
+
+} 
+
+function turnInAssignment(classid, g_classId, g_assignmentId, g_studentId, g_lessonId) {
+    // get the list of submission for the assignment
+    var request = gapi.client.classroom.courses.courseWork.studentSubmissions.list({
+        courseId: g_classId,
+        courseWorkId: g_assignmentId,
+        userId: g_studentId
+    });
+
+    request.execute(function(resp) {
+        log("turnInAssignment(): list - " + JSON.stringify(resp));
+        // use the first assignment submission id to turn in assignment
+        if(resp.studentSubmissions) {
+            g_submissionId = resp.studentSubmissions[0].id;
+            var request = gapi.client.classroom.courses.courseWork.studentSubmissions.turnIn({
+                courseId: g_classId,
+                courseWorkId: g_assignmentId,
+                id: g_submissionId
+            });
+            request.execute(function(resp) {
+                log("turnInAssignment(): turnIn - " + JSON.stringify(resp));
+                // save turned in data to class student info
+                $.ajax({
+                    url: '/myclasses/api/saveturnin',
+                    type: 'POST',
+                    data: {
+                        id: classid,
+                        classid: g_classId,
+                        lessonid: g_lessonId,
+                        studentid: g_studentId,
+                        submissionid: g_submissionId
+                    },
+                    success : function(data) {
+                        log("saveturnin() - " + JSON.stringify(data));
+                        if(data && data.status == 'success') {
+                            window.location = '/myclasses/toc?classid='+classid;
+                        }
+                    }
+                });
+            });
+        }
+    }); 
+} 
+
+
+function log(msg) {
+    console.log(msg);
+    // @tsilva HACK: jquery may not be loaded yet
+    if($ === undefined) { return; }
+    $.ajax({
+        url: '/myclasses/api/logMessage',
+        type: 'POST',
+        data: {
+            message: msg
+        }
+    }); 
+} 
